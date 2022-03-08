@@ -4,6 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+function emitComment(id){
+  setInterval(() => {
+    window.dispatchEvent(
+      new CustomEvent(`lesson-${id}`, {
+        detail:`Noi dung comment cua lesson ${id}`
+      })
+    )
+  }, 2000)
+}
+
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

@@ -1,6 +1,20 @@
 import {useEffect, useState} from 'react'
 
 const tabs = ['posts', 'comments', 'albums']
+const lessons = [
+    {
+        id: 1,
+        name: 'ReactJS la gi va tai sao nen hoc'
+    },
+    {
+        id: 2,
+        name: 'SPA/MPA la gi'
+    },
+    {
+        id: 3,
+        name: 'Arrow function'
+    }
+]
 
 function Content() {
     const [title, setTitle] = useState('')
@@ -10,6 +24,7 @@ function Content() {
     const [width, setWidth] = useState(window.innerWidth)
     const [countdown, setCountdown] = useState(180)
     const [avatar, setAvatar] = useState()
+    const [lessonId, setLessonId] = useState(1)
 
     useEffect(() => {
         const timerId = setInterval(() => {
