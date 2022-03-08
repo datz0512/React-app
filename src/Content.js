@@ -62,7 +62,7 @@ function Content() {
         window.addEventListener('resize', handleResize)
 
         return () => {
-            
+            window.removeEventListener('resize', handleResize)    
         }
     }, [])
 
@@ -80,6 +80,22 @@ function Content() {
 
     return (
         <div>
+            <ul>
+                {lessons.map(lesson => (
+                    <li
+                        key={lesson.id}
+                        style={{
+                            color:lessonId === lesson.id ?
+                                'red' :
+                                '#333',
+                            cursor: 'pointer'
+                        }}
+                        onClick={() => setLessonId(lesson.id)}
+                    >
+                        {lesson.name}
+                    </li>
+                ))}
+            </ul>
             <input 
                 type='file'
                 onChange={handlePreviewAvatar}
