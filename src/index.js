@@ -14,7 +14,9 @@ function emitComment(id){
   }, 2000)
 }
 
-
+emitComment(1)
+emitComment(2)
+emitComment(3)
 
 ReactDOM.render(
   <React.StrictMode>

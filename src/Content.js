@@ -78,6 +78,18 @@ function Content() {
         }
     }, [avatar])
 
+    useEffect(() => {
+        const handleComment = ({detail}) => {
+             console.log(detail);
+        }
+
+        window.addEventListener(`lesson-${lessonId}`, handleComment)
+
+        return () => {
+            window.removeEventListener(`lesson-${lessonId}`, handleComment)
+        }
+    }, [lessonId])
+
     return (
         <div>
             <ul>
