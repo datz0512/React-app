@@ -26,6 +26,7 @@ function Content() {
     const [avatar, setAvatar] = useState()
     const [lessonId, setLessonId] = useState(1)
     const [countUp, setCountUp] = useState(0)
+    const [count, setCount] = useState(60)
 
     useEffect(() => {
         const timerId = setInterval(() => {
@@ -102,10 +103,22 @@ function Content() {
         setCountUp(countUp + 1)
     }
 
+    let timeId
+    const handleStart = () => {
+        timeId = setInterval(() => {
+            setCount(prevCount => prevCount -1)
+        }, 1000)
+    }
+
+    const handleStop = () => {
+        clearInterval(timeId)
+    }
+
     return (
         <div>
-            <h1>{countUp}</h1>
-            <button onClick={handleRun}>UP</button>
+            <h1>{count}</h1>
+            <button onClick={handleStart}>Start</button>
+            <button onClick={handleStop}>Stop</button>
             <ul>
                 {lessons.map(lesson => (
                     <li
