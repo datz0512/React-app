@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useLayoutEffect} from 'react'
 
 const tabs = ['posts', 'comments', 'albums']
 const lessons = [
@@ -25,6 +25,7 @@ function Content() {
     const [countdown, setCountdown] = useState(180)
     const [avatar, setAvatar] = useState()
     const [lessonId, setLessonId] = useState(1)
+    const [countUp, setCountUp] = useState(0)
 
     useEffect(() => {
         const timerId = setInterval(() => {
@@ -70,6 +71,7 @@ function Content() {
         const file = e.target.files[0]
         file.preview = URL.createObjectURL(file)
         setAvatar(file)
+
     }
 
     useEffect(() => {
@@ -90,8 +92,20 @@ function Content() {
         }
     }, [lessonId])
 
+    useLayoutEffect(() => {
+        if(countUp > 3){
+            setCountUp(0)
+        }
+    }, [countUp])
+
+    const handleRun = () => {
+        setCountUp(countUp + 1)
+    }
+
     return (
         <div>
+            <h1>{countUp}</h1>
+            <button onClick={handleRun}>UP</button>
             <ul>
                 {lessons.map(lesson => (
                     <li
