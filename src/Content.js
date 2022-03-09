@@ -1,4 +1,4 @@
-import {useEffect, useState, useLayoutEffect} from 'react'
+import {useEffect, useState, useLayoutEffect, useRef} from 'react'
 
 const tabs = ['posts', 'comments', 'albums']
 const lessons = [
@@ -103,15 +103,16 @@ function Content() {
         setCountUp(countUp + 1)
     }
 
-    let timeId
+    let timeId = useRef()
+
     const handleStart = () => {
-        timeId = setInterval(() => {
-            setCount(prevCount => prevCount -1)
+        timeId.current = setInterval(() => {
+            setCount(prevCount => prevCount - 1)
         }, 1000)
     }
 
     const handleStop = () => {
-        clearInterval(timeId)
+        clearInterval(timeId.current)
     }
 
     return (
@@ -119,6 +120,8 @@ function Content() {
             <h1>{count}</h1>
             <button onClick={handleStart}>Start</button>
             <button onClick={handleStop}>Stop</button>
+            <h1>{countUp}</h1>
+            <button onClick={handleRun}>UP</button>
             <ul>
                 {lessons.map(lesson => (
                     <li
