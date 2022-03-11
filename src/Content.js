@@ -1,4 +1,4 @@
-import {useEffect, useState, useLayoutEffect, useRef} from 'react'
+import {useEffect, useState, useLayoutEffect, useRef, memo} from 'react'
 
 const tabs = ['posts', 'comments', 'albums']
 const lessons = [
@@ -22,7 +22,7 @@ function Content() {
     const [type, setType] = useState('posts')
     const [showGoToTop, setShowGoToTop] = useState(false)
     const [width, setWidth] = useState(window.innerWidth)
-    const [countdown, setCountdown] = useState(180)
+    const [countdown, setCountdown] =  useState(180)
     const [avatar, setAvatar] = useState()
     const [lessonId, setLessonId] = useState(1)
     const [countUp, setCountUp] = useState(0)
@@ -115,6 +115,8 @@ function Content() {
         clearInterval(timeId.current)
     }
 
+    let timerID = useRef(90);
+
     return (
         <div>
             <h1>{count}</h1>
@@ -186,4 +188,4 @@ function Content() {
     )
 }
 
-export default Content
+export default memo(Content)
