@@ -1,4 +1,4 @@
-import {useEffect, useState, useLayoutEffect, useRef, memo} from 'react'
+import { useEffect, useState, useLayoutEffect, useRef, memo } from 'react'
 
 const tabs = ['posts', 'comments', 'albums']
 const lessons = [
@@ -16,7 +16,8 @@ const lessons = [
     }
 ]
 
-function Content() {
+function Content({ onIncrease }) {
+    // console.log('re-render');
     const [title, setTitle] = useState('')
     const [posts, setPosts] = useState([])
     const [type, setType] = useState('posts')
@@ -119,6 +120,7 @@ function Content() {
 
     return (
         <div>
+            <button onClick={onIncrease}>Click me!</button>
             <h1>{count}</h1>
             <button onClick={handleStart}>Start</button>
             <button onClick={handleStop}>Stop</button>

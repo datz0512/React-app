@@ -1,8 +1,13 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Content from './Content.js'
 
 function App() {
     const [show, setShow] = useState(false)
+    const [count , setCount] = useState(0)
+
+    const handleIncrease = useCallback(() => {
+        setCount(prevCount => prevCount + 1)
+    }, [])
 
     return(
         <div className='App' style={{padding:20}}>
@@ -11,8 +16,8 @@ function App() {
             >
                 Show/Hide
             </button>
-
-            {show && <Content />}
+            <h1>{count}</h1>
+            {show && <Content onIncrease={handleIncrease}/>}
         </div>
     ) 
 }
