@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo, useRef } from 'react'
 import Content from './Content.js'
 
 function App() {
@@ -12,21 +12,31 @@ function App() {
         setCount(prevCount => prevCount + 1)
     }, [])
 
+    const nameRef = useRef()
+
     const handleSubmit = () => {
         setProducts([...products, {
             name,
             price: +price
         }])
+        setName('')
+        setPrice('')
+
+        nameRef.current.focus()
     }
 
-    const total = products.reduce((result, prod) => 
-        result + prod.price, 
-        0
-    )
+    const total = useMemo(() => {
+        const result = products.reduce((result, prod) => {
+            console.log("Tinh toan lai");
+            return result + prod.price  
+        }, 0)
+        return result
+    }, [products])
 
     return(
         <div className='App' style={{padding:20}}>
             <input
+                ref={nameRef}
                 value={name}
                 placeholder="Enter name..."
                 onChange={e => setName(e.target.value)}
