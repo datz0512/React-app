@@ -55,16 +55,16 @@ function App() {
         <div className='App' style={{padding:20}}>
             <h1>{count1}</h1>
             <button 
-                // onClick={() => setCount1(count1 - 1)}
+                onClick={() => dispatch(DOWN_ACTION)}
             >
                 Down
             </button>
             <button 
-                // onClick={() => setCount1(count1 + 1)}
+                onClick={() => dispatch(UP_ACTION)}
             >
                 Up
             </button>
-
+            <br/>
             <input
                 ref={nameRef}
                 value={name}
