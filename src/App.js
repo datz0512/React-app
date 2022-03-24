@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useRef } from 'react'
+import { useState, useCallback, useMemo, useRef, useReducer } from 'react'
 import Content from './Content.js'
 
 function App() {
@@ -7,7 +7,6 @@ function App() {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [products, setProducts] = useState([])
-    const [count1, setCount1] = useState(0)
 
     const handleIncrease = useCallback(() => {
         setCount(prevCount => prevCount + 1)
@@ -34,20 +33,38 @@ function App() {
         return result
     }, [products])
 
+    const initState = 0
+
+    const UP_ACTION = 'up'
+    const DOWN_ACTION = 'down'
+
+    const reducer = (state, action) => {
+        switch(action){
+            case UP_ACTION:
+                return state + 1
+            case DOWN_ACTION:
+                return state - 1
+            default:
+                throw new Error('Invalid action')
+        }
+    }
+
+    const [count1, dispatch] = useReducer(reducer, initState)
+
     return(
         <div className='App' style={{padding:20}}>
             <h1>{count1}</h1>
             <button 
-                onClick={() => setCount1(count1 - 1)}
+                // onClick={() => setCount1(count1 - 1)}
             >
                 Down
             </button>
             <button 
-                onClick={() => setCount1(count1 - 1)}
+                // onClick={() => setCount1(count1 + 1)}
             >
-                Down
+                Up
             </button>
-            
+
             <input
                 ref={nameRef}
                 value={name}
