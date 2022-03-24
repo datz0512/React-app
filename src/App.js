@@ -7,6 +7,7 @@ function App() {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [products, setProducts] = useState([])
+    const [count1, setCount1] = useState(0)
 
     const handleIncrease = useCallback(() => {
         setCount(prevCount => prevCount + 1)
@@ -35,6 +36,18 @@ function App() {
 
     return(
         <div className='App' style={{padding:20}}>
+            <h1>{count1}</h1>
+            <button 
+                onClick={() => setCount1(count1 - 1)}
+            >
+                Down
+            </button>
+            <button 
+                onClick={() => setCount1(count1 - 1)}
+            >
+                Down
+            </button>
+            
             <input
                 ref={nameRef}
                 value={name}
