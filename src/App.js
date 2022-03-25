@@ -96,14 +96,19 @@ function App() {
     const [state, dispatchTodo] = useReducer(reducerTodo, initStateTodo)
     const { job, jobs } = state
 
+    const inputRef = useRef()
+
     const handleSubmitTodo = () => {
-        dispatchTodo(addJob(job))        
+        dispatchTodo(addJob(job)) 
+        dispatchTodo(setJob(''))  
+        inputRef.current.focus()     
     }
 
     return(
         <div className='App' style={{padding:20}}>
             <h3>TODO</h3>
             <input 
+                ref={inputRef}
                 value={job}
                 placeholder='Enter todos...'
                 onChange={e => {

@@ -49,9 +49,7 @@ function Content({ onIncrease }) {
         const handleScroll = () => {
             setShowGoToTop(window.scrollY >= 200)
         }
-
         window.addEventListener('scroll', handleScroll)
-
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
@@ -61,9 +59,7 @@ function Content({ onIncrease }) {
         const handleResize = () => {
             setWidth(window.innerWidth)
         }
-
         window.addEventListener('resize', handleResize)
-
         return () => {
             window.removeEventListener('resize', handleResize)    
         }
@@ -86,9 +82,7 @@ function Content({ onIncrease }) {
         const handleComment = ({detail}) => {
              console.log(detail);
         }
-
         window.addEventListener(`lesson-${lessonId}`, handleComment)
-
         return () => {
             window.removeEventListener(`lesson-${lessonId}`, handleComment)
         }
@@ -115,8 +109,6 @@ function Content({ onIncrease }) {
     const handleStop = () => {
         clearInterval(timeId.current)
     }
-
-    let timerID = useRef(90);
 
     return (
         <div>
