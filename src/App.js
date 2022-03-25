@@ -51,8 +51,77 @@ function App() {
 
     const [count1, dispatch] = useReducer(reducer, initState)
 
+    const initStateTodo = {
+        job: '',
+        jobs: []
+    }
+
+    const SET_JOB = 'set_job'
+    const ADD_JOB = 'add_job'
+    const DELETE_JOB = 'delete_job'
+
+    const setJob = payload => {
+        return {
+            type: SET_JOB,
+            payload
+        }
+    }
+
+    const addJob = payload => {
+        return {
+            type: ADD_JOB,
+            payload
+        }
+    }
+
+    const reducerTodo = (state, action) => {
+        switch(action.type){
+            case SET_JOB:
+                return {
+                    ...state,
+                    job: action.payload
+                }
+            
+            case ADD_JOB:
+                return {
+                    ...state,
+                    jobs: [...state.jobs, action.payload]
+                }
+
+            default:
+                throw new Error('Invalid action')
+        }  
+    }
+
+    const [state, dispatchTodo] = useReducer(reducerTodo, initStateTodo)
+    const { job, jobs } = state
+
+    const handleSubmitTodo = () => {
+        dispatchTodo(addJob(job))        
+    }
+
     return(
         <div className='App' style={{padding:20}}>
+            <h3>TODO</h3>
+            <input 
+                value={job}
+                placeholder='Enter todos...'
+                onChange={e => {
+                    dispatchTodo(setJob(e.target.value))
+                }}
+            />
+            <button
+                onClick={handleSubmitTodo}
+            >
+                Add
+            </button>
+            <ul>
+                {jobs.map((job, index) => (
+                    <li key={index}>{job} &times;</li>
+                ))}
+            </ul>
+
+            <br/>
             <h1>{count1}</h1>
             <button 
                 onClick={() => dispatch(DOWN_ACTION)}
