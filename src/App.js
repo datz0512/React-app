@@ -74,6 +74,13 @@ function App() {
         }
     }
 
+    const deleteJob = payload => {
+        return {
+            type: DELETE_JOB,
+            payload
+        }
+    }
+
     const reducerTodo = (state, action) => {
         switch(action.type){
             case SET_JOB:
@@ -87,7 +94,13 @@ function App() {
                     ...state,
                     jobs: [...state.jobs, action.payload]
                 }
-
+            case DELETE_JOB:
+                const newJobs = [...state.jobs]
+                newJobs.splice(action.payload, 1)
+                return {
+                    ...state,
+                    jobs: newJobs
+                }
             default:
                 throw new Error('Invalid action')
         }  
@@ -120,9 +133,16 @@ function App() {
             >
                 Add
             </button>
-            <ul>
+            <ul style={{listStyleType: "none"}}>
                 {jobs.map((job, index) => (
-                    <li key={index}>{job} &times;</li>
+                    <li key={index}>
+                        {index+1}
+                        <span>.&#160;</span> 
+                        {job} &#160;
+                        <span onClick={() => dispatchTodo(deleteJob(index))}>
+                            &times;
+                        </span>
+                    </li>
                 ))}
             </ul>
 
