@@ -84,6 +84,7 @@ function Content({ onIncrease }) {
              console.log(detail);
         }
         window.addEventListener(`lesson-${lessonId}`, handleComment)
+        
         return () => {
             window.removeEventListener(`lesson-${lessonId}`, handleComment)
         }
@@ -113,7 +114,7 @@ function Content({ onIncrease }) {
 
     return (
         <div>
-            <Paragraph/>
+            <Paragraph />
             <button onClick={onIncrease}>Click me!</button>
             <h1>{count}</h1>
             <button onClick={handleStart}>Start</button>

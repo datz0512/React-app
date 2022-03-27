@@ -1,6 +1,9 @@
-import { useState, useCallback, useMemo, useRef, useReducer, Fragment } from 'react'
+import { useState, useCallback, useMemo, useRef, useReducer, useContext } from 'react'
 import Content from './Content.js'
 import TodoApp from './Todo'
+import { ThemeContext } from './ThemeContext'
+import './App.css'
+
 
 function App() {
     const [show, setShow] = useState(false)
@@ -52,6 +55,7 @@ function App() {
 
     const [count1, dispatch] = useReducer(reducer, initState)
 
+    const context = useContext(ThemeContext)
 
     return(
         <div className='App' style={{padding:20}}>
@@ -99,10 +103,12 @@ function App() {
             </button>
             <h1>{count}</h1>
             {show && 
-                <Fragment>
-                    <button>Toggle Theme</button>
+                <>
+                    <button onClick={context.toggleTheme}>Toggle Theme</button>
+                    &ensp;
+                    {context.theme}
                     <Content onIncrease={handleIncrease}/>
-                </Fragment>
+                </>
             }
         </div>
     ) 
