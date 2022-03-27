@@ -1,4 +1,5 @@
 import { useEffect, useState, useLayoutEffect, useRef, memo } from 'react'
+import Paragraph from './Paragraph'
 
 const tabs = ['posts', 'comments', 'albums']
 const lessons = [
@@ -112,6 +113,7 @@ function Content({ onIncrease }) {
 
     return (
         <div>
+            <Paragraph/>
             <button onClick={onIncrease}>Click me!</button>
             <h1>{count}</h1>
             <button onClick={handleStart}>Start</button>

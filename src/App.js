@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useRef, useReducer } from 'react'
+import { useState, useCallback, useMemo, useRef, useReducer, Fragment } from 'react'
 import Content from './Content.js'
 import TodoApp from './Todo'
 
@@ -98,7 +98,12 @@ function App() {
                 Show/Hide
             </button>
             <h1>{count}</h1>
-            {show && <Content onIncrease={handleIncrease}/>}
+            {show && 
+                <Fragment>
+                    <button>Toggle Theme</button>
+                    <Content onIncrease={handleIncrease}/>
+                </Fragment>
+            }
         </div>
     ) 
 }
