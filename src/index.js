@@ -22,9 +22,11 @@ emitComment(3)
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <StoreProvider>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
