@@ -35,7 +35,9 @@ function App() {
                 {jobs.map((job, index) => (
                     <li key={index}>
                         {index+1}
-                        <span>.&#160;</span> 
+                        <span>
+                            .&#160;
+                        </span> 
                         {job} &#160;
                         <span onClick={() => dispatchTodo(deleteJob(index))}>
                             &times;

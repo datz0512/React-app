@@ -4,7 +4,6 @@ import TodoApp from './Todo'
 import { ThemeContext } from './ThemeContext'
 import './App.css'
 
-
 function App() {
     const [show, setShow] = useState(false)
     const [count , setCount] = useState(0)
@@ -54,7 +53,6 @@ function App() {
     }
 
     const [count1, dispatch] = useReducer(reducer, initState)
-
     const context = useContext(ThemeContext)
 
     return(
