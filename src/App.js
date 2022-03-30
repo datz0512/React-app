@@ -3,10 +3,11 @@ import Content from './Content.js'
 import TodoApp from './Todo'
 import { ThemeContext } from './ThemeContext'
 import './App.css'
+import Video from './Video.js'
 
 function App() {
     const [show, setShow] = useState(false)
-    const [count , setCount] = useState(0)
+    const [count, setCount] = useState(0)
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [products, setProducts] = useState([])
@@ -54,9 +55,20 @@ function App() {
 
     const [count1, dispatch] = useReducer(reducer, initState)
     const context = useContext(ThemeContext)
+    const videoRef = useRef()
+
+    const handlePlay = () => {
+        videoRef.current.play()
+    }
+    const handlePause  = () => {
+        videoRef.current.pause()
+    }
 
     return(
         <div className='App' style={{padding:20}}>
+            <Video ref={videoRef}/> 
+            <button onClick={handlePlay}>Play</button>
+            <button onClick={handlePause}>Pause </button>
             <TodoApp/>
             <br/>
             <h1>{count1}</h1>
