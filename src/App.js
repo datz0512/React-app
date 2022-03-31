@@ -55,8 +55,8 @@ function App() {
 
     const [count1, dispatch] = useReducer(reducer, initState)
     const context = useContext(ThemeContext)
+    
     const videoRef = useRef()
-
     const handlePlay = () => {
         videoRef.current.play()
     }
