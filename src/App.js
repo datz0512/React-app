@@ -1,9 +1,12 @@
-import { useState, useCallback, useMemo, useRef, useReducer, useContext } from 'react'
+import { useState, useCallback, useMemo, useRef, useReducer, useContext, useEffect } from 'react'
 import Content from './Content.js'
 import TodoApp from './Todo'
 import { ThemeContext } from './ThemeContext'
 import './App.css'
 import Video from './Video.js'
+import Heading from './components/Heading'
+import Paragraph from './components/Paragraph'
+import GlobalStyles from './components/GlobalStyles'
 
 function App() {
     const [show, setShow] = useState(false)
@@ -57,6 +60,11 @@ function App() {
     const context = useContext(ThemeContext)
     
     const videoRef = useRef()
+
+    useEffect(()=> {
+        console.log(videoRef.current);
+    })
+
     const handlePlay = () => {
         videoRef.current.play()
     }
@@ -65,62 +73,66 @@ function App() {
     }
 
     return(
-        <div className='App' style={{padding:20}}>
-            <Video ref={videoRef}/> 
-            <button onClick={handlePlay}>Play</button>
-            <button onClick={handlePause}>Pause </button>
-            <TodoApp/>
-            <br/>
-            <h1>{count1}</h1>
-            <button 
-                onClick={() => dispatch(DOWN_ACTION)}
-            >
-                Down
-            </button>
-            <button 
-                onClick={() => dispatch(UP_ACTION)}
-            >
-                Up
-            </button>
-            <br/>
-            <br/>
-            <input
-                ref={nameRef}
-                value={name}
-                placeholder="Enter name..."
-                onChange={e => setName(e.target.value)}
-            />
-            <br />
-            <input
-                value={price}
-                placeholder="Enter price..."
-                onChange={e => setPrice(e.target.value)}
-            />
-            <br />
-            <button onClick={handleSubmit}>Add</button>
-            <br />
-            Total: {total}
-            <ul>
-                {products.map((product, index) => (
-                    <li key={index}>{product.name} - {product.price}</li>
-                ))}
-            </ul>
+        <GlobalStyles>
+            <div className='App' style={{padding:20}}>
+                <Heading />
+                <Paragraph />
+                <Video ref={videoRef}/> 
+                <button onClick={handlePlay}>Play</button>
+                <button onClick={handlePause}>Pause </button>
+                <TodoApp/>
+                <br/>
+                <h1>{count1}</h1>
+                <button 
+                    onClick={() => dispatch(DOWN_ACTION)}
+                >
+                    Down
+                </button>
+                <button 
+                    onClick={() => dispatch(UP_ACTION)}
+                >
+                    Up
+                </button>
+                <br/>
+                <br/>
+                <input
+                    ref={nameRef}
+                    value={name}
+                    placeholder="Enter name..."
+                    onChange={e => setName(e.target.value)}
+                />
+                <br />
+                <input
+                    value={price}
+                    placeholder="Enter price..."
+                    onChange={e => setPrice(e.target.value)}
+                />
+                <br />
+                <button onClick={handleSubmit}>Add</button>
+                <br />
+                Total: {total}
+                <ul>
+                    {products.map((product, index) => (
+                        <li key={index}>{product.name} - {product.price}</li>
+                    ))}
+                </ul>
 
-            <button
-                onClick={() => setShow(!show)}
-            >
-                Show/Hide
-            </button>
-            <h1>{count}</h1>
-            {show && 
-                <>
-                    <button onClick={context.toggleTheme}>Toggle Theme</button>
-                    &ensp;
-                    {context.theme}
-                    <Content onIncrease={handleIncrease}/>
-                </>
-            }
-        </div>
+                <button
+                    onClick={() => setShow(!show)}
+                >
+                    Show/Hide
+                </button>
+                <h1>{count}</h1>
+                {show && 
+                    <>
+                        <button onClick={context.toggleTheme}>Toggle Theme</button>
+                        &ensp;
+                        {context.theme}
+                        <Content onIncrease={handleIncrease}/>
+                    </>
+                }
+            </div>
+        </GlobalStyles>
     ) 
 }
 
