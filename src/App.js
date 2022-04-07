@@ -77,6 +77,10 @@ function App() {
             <div className='App' style={{padding:20}}>
                 <Heading />
                 <Paragraph />
+                <div className='d-flex'>
+                    <div>Item1</div>
+                    <div>Item2</div>
+                </div>
                 <Video ref={videoRef}/> 
                 <button onClick={handlePlay}>Play</button>
                 <button onClick={handlePause}>Pause </button>
