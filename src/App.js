@@ -7,6 +7,7 @@ import Video from './Video.js'
 import Heading from './components/Heading'
 import Paragraph from './components/Paragraph'
 import GlobalStyles from './components/GlobalStyles'
+import Button from './components/Button/index.js'
 
 function App() {
     const [show, setShow] = useState(false)
@@ -77,10 +78,10 @@ function App() {
             <div className='App' style={{padding:20}}>
                 <Heading />
                 <Paragraph />
-                <div className='d-flex'>
-                    <div>Item1</div>
-                    <div>Item2</div>
-                </div>
+                <Button />
+                <Button primary/>
+                <Button secondary/>
+                <br/>
                 <Video ref={videoRef}/> 
                 <button onClick={handlePlay}>Play</button>
                 <button onClick={handlePause}>Pause </button>
