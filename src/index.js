@@ -1,32 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {ThemeProvider} from './ThemeContext'
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router} from "react-router-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ThemeProvider } from "./ThemeContext";
 
-
-function emitComment(id){
+function emitComment(id) {
   setInterval(() => {
     window.dispatchEvent(
       new CustomEvent(`lesson-${id}`, {
-        detail:`Noi dung comment cua lesson ${id}`
+        detail: `Noi dung comment cua lesson ${id}`,
       })
-    )
-  }, 2000)
+    );
+  }, 2000);
 }
 
-emitComment(1)
-emitComment(2)
-emitComment(3)
+emitComment(1);
+emitComment(2);
+emitComment(3);
 
 ReactDOM.render(
   <React.StrictMode>
-      <ThemeProvider>
+    <ThemeProvider>
+      <Router>
         <App />
-      </ThemeProvider>
+      </Router>
+    </ThemeProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

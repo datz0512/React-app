@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo, useRef, useReducer, useContext, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Content from './Content.js'
 import TodoApp from './Todo'
 import { ThemeContext } from './ThemeContext'
@@ -8,6 +9,10 @@ import Heading from './components/Heading'
 import Paragraph from './components/Paragraph'
 import GlobalStyles from './components/GlobalStyles'
 import Button from './components/Button/index.js'
+import NavBar from './components/NavBar/NavBar.js'
+import HomePage from './pages/Home'
+import ContactPage from './pages/Contact'
+import NewsPage from './pages/News'
 
 function App() {
     const [show, setShow] = useState(false)
@@ -76,6 +81,12 @@ function App() {
     return(
         <GlobalStyles>
             <div className='App' style={{padding:20}}>
+                <NavBar />
+                <Routes>
+                    <Route path='/' element={<HomePage/>}/>
+                    <Route path='/news' element={<NewsPage/>}/>
+                    <Route path='/contact' element={<ContactPage/>}/>
+                </Routes>
                 <Heading />
                 <Paragraph />
                 <Button />
