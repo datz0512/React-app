@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo, useRef, useReducer, useContext, useEffe
 import Content from './Content.js'
 import TodoApp from './Todo'
 import { ThemeContext } from './ThemeContext'
-import './App.css'
+import './App.scss'
 import Video from './Video.js'
 import Heading from './components/Heading'
 import Paragraph from './components/Paragraph'
